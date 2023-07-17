@@ -1,7 +1,7 @@
 from datetime import datetime
 print(f"Here is a python script running at {datetime.now()} brother")
 
-class Calc(Object):
+class Calc(object):
     def add(self, a, b):
         return a + b
 
