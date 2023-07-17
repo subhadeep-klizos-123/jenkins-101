@@ -16,7 +16,7 @@ class Calc(object):
 
 if __name__ == '__main__':
     c = Calc()
-    print(f"Addition: {c.add(10 + 20)}")
-    print(f"Subtraction: {c.sub(10 - 20)}")
-    print(f"Multiplication: {c.mult(10 * 20)}")
-    print(f"Division: {c.div(10 / 20)}")
+    print(f"Addition: {c.add(10, 20)}")
+    print(f"Subtraction: {c.sub(10, 20)}")
+    print(f"Multiplication: {c.mult(10, 20)}")
+    print(f"Division: {c.div(10, 20)}")
