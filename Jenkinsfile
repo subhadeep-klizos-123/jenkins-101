@@ -9,7 +9,7 @@ pipeline {
     }
     stages {
         stage('Install') {
-            step {
+            steps {
                 echo "Installing Dependencies..."
                 sh '''
                 pip install -r requirements.txt
@@ -23,7 +23,7 @@ pipeline {
             }
         }
         stage('Run') {
-            step {
+            steps {
                 echo "Running Code"
                 sh '''
                 python3 main.py
