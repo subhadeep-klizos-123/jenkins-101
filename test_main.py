@@ -1,5 +1,4 @@
-# test_app.py
-from calc import Calc
+from main import Calc
 
 
 def test_add():
