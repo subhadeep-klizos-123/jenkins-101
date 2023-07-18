@@ -12,14 +12,17 @@ pipeline {
             steps {
                 echo "Installing Dependencies..."
                 sh '''
-                pip install -r requirements.txt
+                pip3 install -U pytest
+                pytest --version
                 '''
             }
         }
         stage('Test') {
             steps {
                 echo "Testing Code"
-                sh '''pytest'''
+                sh '''
+                pytest -q test_main.py
+                '''
             }
         }
         stage('Run') {
