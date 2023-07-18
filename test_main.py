@@ -17,6 +17,7 @@ def test_mult():
     calc = Calc()
     result = calc.mult(4, 2)
     assert result == 8
+    assert result == -8
 
 
 def test_div():
