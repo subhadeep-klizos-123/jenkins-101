@@ -13,7 +13,7 @@ pipeline {
                 echo "Installing Dependencies..."
                 sh '''
                 pip3 install -U pytest
-                pytest --version
+                python3 -m pytest --version
                 '''
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo "Testing Code"
                 sh '''
-                pytest -q test_main.py
+                python3 -m pytest -q test_main.py
                 '''
             }
         }
