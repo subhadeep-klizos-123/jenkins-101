@@ -1,33 +1,49 @@
 pipeline {
     agent {
         node {
-            label 'docker-agent-alpine'
+            label 'dind-slave-agent'
         }
     }
+
     stages {
-        stage('Install') {
+        stage('Git Checkout') {
             steps {
-                echo "Installing Dependencies..."
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/subhadeep-klizos-123/jenkins-101.git'
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
                 sh '''
-                pip3 install -U pytest
+                python3 -m pip install pytest
                 python3 -m pytest --version
                 '''
             }
         }
+        
         stage('Test') {
             steps {
-                echo "Testing Code"
-                sh '''
-                python3 -m pytest -q test_main.py
-                '''
+                sh "python3 -m pytest -q test_main.py"
             }
         }
+        
         stage('Run') {
             steps {
-                echo "Running Code"
-                sh '''
-                python3 main.py
-                '''
+                sh "python3 main.py"
+            }
+        }
+        
+        stage('Docker Build & Push') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'docker-credentails') {
+                        sh """
+                            docker build -t jenkins-101:latest .
+                            docker tag jenkins-101:latest iammatrix999/jenkins-101:latest
+                            docker push iammatrix999/jenkins-101:latest
+                        """
+                    }
+                }
             }
         }
     }
