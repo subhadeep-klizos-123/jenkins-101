@@ -5,10 +5,10 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy the project files into the container
-COPY main.py test-main.py /app/
+COPY main.py test_main.py /app/
 
 # Install dependencies
 RUN pip install pytest
 
 # Set the command to run when the container starts
-CMD ["pytest", "test-main.py"]
+CMD ["pytest", "test_main.py"]
